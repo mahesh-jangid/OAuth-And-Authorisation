@@ -1,9 +1,7 @@
 const express = require("express");
-
 const router = express.Router();
 const authenticate = require("../middlewares/authenticate");
 const authorise = require("../middlewares/authorise");
-
 const Product = require("../models/product.model");
 
 router.post("", authenticate, async (req, res) => {
@@ -15,6 +13,7 @@ router.post("", authenticate, async (req, res) => {
     return res.status(400).send({ message: err.message });
   }
 });
+
 router.get("", async (req, res) => {
   try {
     const product = await Product.find();
@@ -23,6 +22,7 @@ router.get("", async (req, res) => {
     return res.status(400).send({ message: err.message });
   }
 });
+
 router.patch(
   "/:id",
   authenticate,
